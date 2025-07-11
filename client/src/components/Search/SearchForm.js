@@ -72,20 +72,27 @@
 import React, { useState } from 'react';
 import { Search, User, Calendar, RefreshCw } from 'lucide-react';
 
-const SearchForm = ({ onSearch, isLoading, onNewSearch, hasResults, initialMobile = '', initialMonth = '2025-05' }) => {
+const SearchForm = ({
+  onSearch,
+  isLoading,
+  onNewSearch,
+  hasResults,
+  initialMobile = '',
+  initialMonth = '' // no hardcoded default here
+}) => {
   const [mobile, setMobile] = useState(initialMobile);
   const [month, setMonth] = useState(initialMonth);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (mobile.trim()) {
+    if (mobile.trim() && month) {
       onSearch(mobile.trim(), month);
     }
   };
 
   const handleNewSearch = () => {
     setMobile('');
-    setMonth('2025-05');
+    setMonth(''); // Reset month selection
     if (onNewSearch) {
       onNewSearch();
     }
@@ -108,9 +115,10 @@ const SearchForm = ({ onSearch, isLoading, onNewSearch, hasResults, initialMobil
           </button>
         )}
       </div>
-      
+
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Mobile Input */}
           <div>
             <label htmlFor="mobile" className="block text-sm font-medium text-gray-700 mb-2">
               Mobile Number
@@ -128,7 +136,8 @@ const SearchForm = ({ onSearch, isLoading, onNewSearch, hasResults, initialMobil
               />
             </div>
           </div>
-          
+
+          {/* Month Dropdown */}
           <div>
             <label htmlFor="month" className="block text-sm font-medium text-gray-700 mb-2">
               Month
@@ -140,13 +149,17 @@ const SearchForm = ({ onSearch, isLoading, onNewSearch, hasResults, initialMobil
                 value={month}
                 onChange={(e) => setMonth(e.target.value)}
                 className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors appearance-none bg-white"
+                required
               >
+                <option value="">Select a month</option>
                 <option value="2025-06">June 2025</option>
+                {/* Later, you can just add more here */}
+                {/* <option value="2025-07">July 2025</option> */}
               </select>
             </div>
           </div>
         </div>
-        
+
         <button
           type="submit"
           disabled={isLoading}
