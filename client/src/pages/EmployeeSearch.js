@@ -361,7 +361,7 @@ const EmployeeSearch = () => {
 
     try {
       // Step 1: Check if records exist
-      const initRes = await fetch('http://127.0.0.1:5001/atten/findby', {
+      const initRes = await fetch('http://52.77.189.58:5001/atten/findby', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
@@ -396,7 +396,7 @@ const EmployeeSearch = () => {
 
       // Step 2: Fetch detailed data from cache-backed APIs
       const [attendanceRes, payrollRes, basicRes] = await Promise.all([
-        fetch('http://127.0.0.1:5001/atten/attendance/fetch', {
+        fetch('http://52.77.189.58:5001/atten/attendance/fetch', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
@@ -405,7 +405,7 @@ const EmployeeSearch = () => {
           return { ok: res.ok, data, status: res.status };
         }),
 
-        fetch('http://127.0.0.1:5001/atten/payroll/fetch', {
+        fetch('http://52.77.189.58:5001/atten/payroll/fetch', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
@@ -414,7 +414,7 @@ const EmployeeSearch = () => {
           return { ok: res.ok, data, status: res.status };
         }),
 
-        fetch('http://127.0.0.1:5001/atten/basic/fetch', {
+        fetch('http://52.77.189.58:5001/atten/basic/fetch', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
