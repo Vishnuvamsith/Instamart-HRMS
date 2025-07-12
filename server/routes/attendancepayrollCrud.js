@@ -68,6 +68,7 @@ const redis = require('../service/redis'); // Redis client
 
 router.post('/findby', async (req, res) => {
   const { Mobile, FinancialTimeline } = req.body;
+  console.log(req.body)
 
   if (!Mobile || !FinancialTimeline) {
     return res.status(400).json({ error: 'Mobile and FinancialTimeline are required' });

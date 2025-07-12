@@ -9,21 +9,20 @@ class Dynamodbmanager
     constructor(region="ap-southeast-1")
     {
         this.region=region,
-        // this.profile=profile
         this.client=new DynamoDBClient(
             {
             region:this.region
-            // credentials:async()=>
-            // {
-            //     try
-            //     {
-            //         return await fromSSO({profile:this.profile})()
-            //     }
-            //     catch(err)
-            //     {
-            //         return await fromEnv()()
-            //     }
-            // }
+        //     credentials:async()=>
+        //     {
+        //         try
+        //         {
+        //             return await fromSSO({profile:this.profile})()
+        //         }
+        //         catch(err)
+        //         {
+        //             return await fromEnv()()
+        //         }
+        //     }
 
         }
     )
